@@ -1,0 +1,29 @@
+<h1>Review A Restaurant</h1>
+
+<%= form_for @review do |f| %>
+  <%= f.label :content %><br>
+  <%= f.text_area :content %><br>
+
+  <%= f.label :rating %><br>
+  <%= f.number_field :rating %><br>
+
+  <%= f.label :restaurant_id, "Select a Restaurant" %><br>
+    <%= f.collection_select :restaurant_id, Restaurant.all, :id, :name, prompt: true %><br>
+
+  <% if !params[:restaurant_id] %>
+      <h4>Or add a new restaurant:</h4><br>
+
+      <%= f.fields_for :restaurant do |v|%>
+          <%= v.label :name %><br>
+          <%= v.text_field :name %><br>
+
+          <%= v.label :location %><br>
+          <%= v.text_field :location %><br>
+
+          <%= v.label :cuisine %><br>
+          <%= v.text_field :cuisine %><br>
+      <% end %>
+    <% end %>
+
+  <%= f.submit %><br>
+<% end %>
