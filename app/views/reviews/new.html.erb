@@ -1,1 +1,35 @@
-<%= render 'form', review: Review.new %>
+<h1>Create a New Restaurant Review</h1>
+
+<%= form_for @review do |f| %>
+
+
+  <h4><%= f.label :restaurant_id, "Select a Restaurant" %><h4> <!--restaurant_id is the name of the params when passed through the controller-->
+    <%= f.collection_select :restaurant_id, Restaurant.all, :id, :name, prompt: true %><br>
+
+  <% if !params[:restaurant_id] %>
+      <h4>Or add a new restaurant:</h4>
+
+      <%= f.fields_for :restaurant do |v|%>
+          <%= v.label :name %><br>
+          <%= v.text_field :name %><br>
+
+          <%= v.label :location %><br>
+          <%= v.text_field :location %><br>
+
+          <%= v.label :cuisine %><br>
+          <%= v.text_field :cuisine %><br>
+      <% end %>
+    <% end %>
+<br><br>
+    <h3>Restaurant Review:</h3>
+
+
+    <%= f.label :content %><br>
+    <%= f.text_area :content %><br>
+
+    <%= f.label :rating %><br>
+    <%= f.number_field :rating %><br>
+<br><br>
+  <h3><%= f.submit %></h3>
+
+<% end %>
