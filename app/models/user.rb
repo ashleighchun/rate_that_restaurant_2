@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :restaurants, through: :reviews
 
-  validates :username, :email, presence: true
-  validates :username, uniqueness: true
+  validates :name, :email, presence: true
+  validates :name, uniqueness: true
 
 
   has_secure_password

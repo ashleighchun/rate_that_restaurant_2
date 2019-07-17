@@ -1,9 +1,8 @@
 class ReviewsController < ApplicationController
   #join table method that creates new review that connects user to restaurant
   def new
-    @review =
-    if params[:user_id] && user = User.find_by_id(params[:user_id])
-      @review = User.reviews.build
+    if @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+      @review = @restaurant.reviews.build
     else
       @review = Review.new
     end
@@ -11,9 +10,12 @@ class ReviewsController < ApplicationController
 
   #post review submission
   def create
-    @restaurant = Restaurant.find_or_create(review_params[:restaurant_id])
-    @restaurant.reviews.create(review_params)
-    #redirect_to 
+    @review = current_user.reviews.build(review_params)
+    if @review.save
+      redirect_to review_path(@review)
+    else
+      render :new
+    end
   end
 
   def index
@@ -21,7 +23,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    set_review
+    @review = Review.find_by_id(params[:id])
   end
 
   def edit
@@ -36,6 +38,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:content, :rating, :user, :user_id, :restaurant_id, :restaurant)
+    params.require(:review).permit(:restaurant_id, :content, :rating)
   end
 end
