@@ -7,7 +7,7 @@
   <%= f.label :rating %><br>
   <%= f.number_field :rating %><br>
 
-  <%= f.label :restaurant_id, "Select a Restaurant" %><br>
+  <%= f.label :restaurant_id, "Select a Restaurant" %><br> <!--restaurant_id is the name of the params when passed through the controller-->
     <%= f.collection_select :restaurant_id, Restaurant.all, :id, :name, prompt: true %><br>
 
   <% if !params[:restaurant_id] %>

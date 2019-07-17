@@ -1,0 +1,22 @@
+<h1>List of All Restaurant Ratings</h1>
+
+<%= form_tag("/reviews", method: "get") do %>
+  <%= label_tag(:rating, "Enter the rating you want to see") %>
+  <%= number_field_tag(:rating) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<!--show each restaurant  -->
+<!--highest rating to lowest rating - do this if you have time later  -->
+<!--number of reviews  -->
+<% @restaurants.each do |restaurant|%>
+  <p> Restaurant Name: <%=link_to restaurant.name, restaurant_path(restaurant)<p> %>/<p>
+  <p> Restaurant Cuisine: <%= restaurant.cuisine %> </p>
+  <p> <%= restaurant.reviews.each do |review|%><p>
+    <p>Rating: <%=review.rating%><p>
+    <p>Content: <%=review.content%>
+    <p>Reviewer: <%=review.user.name%>
+  <% end %>
+<% end %>
+<%=%>
+<%=%>
