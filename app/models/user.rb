@@ -4,6 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+
+  has_many :reviews
+  has_many :restaurants, through: :reviews
+
+  validates :username, :email, presence: true
+  validates :username, uniqueness: true
+  validates :password, length: {in: 3-10}
+
+  has_secure_password
+
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
