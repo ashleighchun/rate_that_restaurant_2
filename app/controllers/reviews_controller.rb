@@ -1,5 +1,8 @@
 class ReviewsController < ApplicationController
   #join table method that creates new review that connects user to restaurant
+  
+
+
   def new
     if @restaurant = Restaurant.find_by_id(params[:restaurant_id])
       @review = @restaurant.reviews.build

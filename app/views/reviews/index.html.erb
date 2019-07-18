@@ -8,14 +8,18 @@
 
 <!-- Restaurant Name - link to show page -->
 <!-- Rating -->
-<% if @restaurant %>
-  <h1>Reviews for <%= @restaurant.name%> </h1>
-<% else %>
-  <h1>All the Reviews </h1>
-<% end %>
+
+Welcome <%= @user.name%>!
+
+
+
+<h1> Your Review Submissions </h1>
 
 <ul>
 <% @reviews.each do |r| %>
   <li><%= link_to r.restaurant.name, review_path(r)%> - <%= r.rating%> stars.</li> <br>
 <% end %>
 </ul>
+<%= link_to "Create a new Restaurant Review!", new_review_path %><br>
+<%= link_to "View All Restaurant Reviews", restaurants_path %><br>
+<%= link_to "Log Out", destroy_user_session_path %><br>

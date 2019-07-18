@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   skip_before_action :authenticate_user!, only: [:home]
 
 
-  def home
+  def welcome
+    redirect_to reviews_path if user_signed_in?
   end
 
   private
