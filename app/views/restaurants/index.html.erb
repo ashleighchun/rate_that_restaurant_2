@@ -2,16 +2,16 @@
 
 <ul>
   <% @restaurants.each do |restaurant|%>
-    <li><% binding.pry%>
-      <%= link_to restaurant.name, restaurant_path(restaurant) %> -
+    <li>
+      <%= link_to restaurant.name, restaurant_path(restaurant) %>
       Restaurant Name: <%= restaurant.name %>
       Location: <%= restaurant.location %>
       Cuisine: <%= restaurant.cuisine %>
 
-          <% restaurant.each do |review|%>
+          <% restaurant.ordered_reviews.each do |review|%>
           <li><strong>Rating:<%=review.rating %></strong> |
             Review: <%= review.content%>
-            Username: <%= review.user.name%>
+            Reviewer's Name: <%= review.user.name%>
           </li>
           <% end %>
         </ul>
