@@ -1,15 +1,16 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:home]
+  #before_action :authenticate_user!, except: [:home]
 
 
-  def welcome
+
+  def home
     redirect_to reviews_path if user_signed_in?
   end
 
-  private
+  #current_user method returns current signed-in user,
+  #while user_signed_in? method is used to verify if any user
+  #is signed in and returns true or false. if user_signed_in? is
+  #false then current_user method will return nil.
 
-  def current_user
-    @current_user ||= User.find_by_id(session[:user_id]) #memoization
-  end
+
 end

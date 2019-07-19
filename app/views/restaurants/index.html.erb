@@ -1,16 +1,27 @@
-<h1>Restaurant Reviews</h1>
+<h1>All Restaurant Reviews</h1>
 
-<%= form_tag("/restaurants", method: "get") do %>
-  <%= label_tag(:rating, "Enter the rating you want to see") %>
-  <%= number_field_tag(:rating) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<ul>
+  <% @restaurants.each do |restaurant|%>
+    <li><% binding.pry%>
+      <%= link_to restaurant.name, restaurant_path(restaurant) %> -
+      Restaurant Name: <%= restaurant.name %>
+      Location: <%= restaurant.location %>
+      Cuisine: <%= restaurant.cuisine %>
+
+          <% restaurant.reviews.each do |review|%>
+          <li><strong>Rating:<%=review.rating %></strong> |
+            Review: <%= review.content%>
+            Username: <%= review.user.name%>
+          </li>
+          <% end %>
+        </ul>
+    </li>
+  <% end %>
+</ul>
+
 
 <!--show each restaurant  -->
-
-<% @restaurants.each do |restaurant|%>
-  <p> Restaurant Name: <%=restaurant.name %></p><!--link to show page  -->
-  <p> Restaurant Cuisine: <%= restaurant.cuisine %> </p>
-  <!--<p> Average Rating: <%=  #restaurant.rating.%> <p> -->
-  <!--<p> Number of Reviews: <%= #restaurant.review.rating.count %> <p> -->
-<% end %>
+<!--link to each show page  -->
+<%= link_to "Create a new Restaurant Review!", new_review_path %><br>
+<%= link_to "Home", reviews_path %><br>
+<%= link_to "Log Out", destroy_user_session_path %><br>

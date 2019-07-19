@@ -9,17 +9,20 @@
 <!-- Restaurant Name - link to show page -->
 <!-- Rating -->
 
-Welcome <%= @user.name%>!
+<h1>Welcome!</h1>
+<% binding.pry%>
 
+This website lets you view Restaurant reviews so you can decide where to eat tonight!<br>
+You can also contribute to the community by submitting a review for restaurants you have been to. <br>
 
-
-<h1> Your Review Submissions </h1>
+<h3> Your Review Submissions: </h3>
 
 <ul>
 <% @reviews.each do |r| %>
-  <li><%= link_to r.restaurant.name, review_path(r)%> - <%= r.rating%> stars.</li> <br>
+  <li><%= link_to r.restaurant.name, review_path(r)%>
+  <li>Your Rating:<%= r.rating%> </li> <br>
 <% end %>
 </ul>
 <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
-<%= link_to "View All Restaurant Reviews", restaurants_path %><br>
+<%= link_to "View All Restaurants", restaurants_path %><br>
 <%= link_to "Log Out", destroy_user_session_path %><br>

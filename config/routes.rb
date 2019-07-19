@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks => "callbacks"}
-
+  root to: 'application#home'
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
     get 'signup', to: 'devise/registrations#new'
   end
 
-  root to: 'users#home'
-  resources :users
-  resources :restaurants
-  resources :reviews
 
+  resources :restaurants do
+    resources :reviews #review belongs to restaurant, you want to nest url
+  end
 
+  scope '/user' do
+    root to: 'sessions#home'
+    resources :reviews
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
