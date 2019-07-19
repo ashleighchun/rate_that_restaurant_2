@@ -9,7 +9,7 @@
 
 <p>Your Review: <%= @review.content%></p>
 
-<% if @restaurant.user == current_user %>
+<% if @review.user == current_user %>
   <%= link_to "Edit This Review", edit_review_path %><br>
   <%= link_to "Delete This Review", review_path(@review), method: :delete  %>
   <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
