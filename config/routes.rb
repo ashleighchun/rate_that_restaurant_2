@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :restaurants do
+  resources :restaurants do #same thing as writing out get 'restaurants/:id' => "restaurants#show" for each route
     resources :reviews #review belongs to restaurant, you want to nest url
   end
 

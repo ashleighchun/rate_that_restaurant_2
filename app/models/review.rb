@@ -14,9 +14,9 @@ class Review < ApplicationRecord
   def restaurant_attributes=(attributes)
     restaurant = Restaurant.find_or_create_by(attributes)
     self.restaurant = restaurant if restaurant.valid? || !self.restaurant
-  end 
+  end
 
-  scope :order_by_rating, -> {order(:age)}
+  scope :order_by_rating, -> {order(:rating)}
 
   #scope :search_by_rating, -> (search_rating){where("rating > ?", search_rating)}
 end
