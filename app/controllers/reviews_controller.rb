@@ -32,7 +32,10 @@ before_action :require_login
   end
 
   def show
-    @review = Review.find_by_id(params[:id])
+    @review = Review.find_by(id: params[:id])
+    if !@review
+      redirect_to reviews_path
+    end 
   end
 
   def edit

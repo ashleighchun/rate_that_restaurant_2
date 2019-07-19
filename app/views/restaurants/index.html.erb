@@ -8,7 +8,7 @@
       Location: <%= restaurant.location %>
       Cuisine: <%= restaurant.cuisine %>
 
-          <% restaurant.reviews.each do |review|%>
+          <% restaurant.each do |review|%>
           <li><strong>Rating:<%=review.rating %></strong> |
             Review: <%= review.content%>
             Username: <%= review.user.name%>
