@@ -1,10 +1,25 @@
-<!-- show details of a specific restaurant -->
-<!-- Restaurant Name -->
-<!-- cuisine -->
+<h1><%= @restaurant.name %></h1>
 
-<!-- Average rating -->
-<!-- number of ratings submitted -->
+<h3><%= @restaurant.location %></h3>
+<h3>Cuisine: <%= @restaurant.cuisine %></h3>
+<% if @restaurant.reviews.exists? %>
+  <h5>Average Rating: <%= @restaurant.reviews.average_rating%></h5> <!-- avg defined in the review model-->
+  <h5>Number of Reviews: <%= @restaurant.reviews.count%></h5>
+  <hr>
+  <h2>Reviews:</h2>
+  <ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li>Reviewer:<%= review.user.name%>
+    <li>Rating:<%= review.rating%> stars. </li> <br>
+    <li>Review:<%= review.content%> </li> <br>
 
+  <% end %>
+  </ul>
+  <% else %>
+  <hr>
+    <h5>This restaurant has not been reviewed.</h5>
+  <hr>
+<% end %>
 <!-- Reviews List  -->
 
 <!-- Reviewer  -->
@@ -14,3 +29,8 @@
 <!-- Reviewer  -->
 <!-- Content  -->
 <!-- Rating -->
+
+
+<%=link_to "Write a New Review", new_restaurant_review_path(@restaurant.id) %> <br>
+
+<%=link_to "View All Restaurants", restaurants_path %>

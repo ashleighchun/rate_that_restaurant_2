@@ -1,5 +1,4 @@
 <!-- Show a single review by logged in user  -->
-<h1> One Restaurant</h1>
 <h1>Restaurant Name: <%= @review.restaurant.name%></h1><br>
 <p>Restaurant Cuisine: <%= @review.restaurant.cuisine%></p><br>
 <p>Restaurant Location: <%= @review.restaurant.location%></p><br>
@@ -14,6 +13,6 @@
   <%= link_to "Edit This Review", edit_review_path(@review) %><br>
   <%= link_to "Delete This Review", review_path(@review), method: :delete  %><br>
   <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
-  <%= link_to "Home", reviews_path %><br>
-  
+  <%=link_to "View All Restaurants", restaurants_path %>
+
 <% end %>

@@ -17,7 +17,7 @@
           <%= r.text_field :location %><br>
 
           <%= r.label :cuisine %><br>
-          <%= r.select(:cuisine, options_for_select(["Breakfast & Brunch", "Fast Food", "Cafe", "Vegetarian", "Specialty Food", "Gastropub", "Tapas/Small Plates", "Steakhouse", "Specialty Food", "Formal", "Diner", "Comfort Food", "Vegan"])) %><br>
+          <%= r.select(:cuisine, options_for_select(["Breakfast & Brunch", "Cafe", "Comfort Food", "Diner", "Fast Food", "Formal", "Gastropub", "Specialty Food", "Steakhouse", "Tapas/Small Plates",  "Vegan", "Vegetarian"])) %><br>
 
           <%= r.label :price %><br>
           <%= r.select(:price, options_for_select(["$", "$$", "$$$", "$$$$"])) %><br>
@@ -25,7 +25,6 @@
     <% end %>
 <br><br>
     <h3>Restaurant Review:</h3>
-
 
     <%= f.label :content %><br>
     <%= f.text_area :content, size: "25x10" %><br>

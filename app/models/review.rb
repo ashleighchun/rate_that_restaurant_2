@@ -8,7 +8,8 @@ class Review < ApplicationRecord
 
 
   validates :restaurant, uniqueness: { scope: :user, message: "has already been reviewed by you"  }
-
+  validates :restaurant_id, presence: true
+  validates_associated :restaurant, presence: true
 
   #accepts nested attributes for :restaurant
   def restaurant_attributes=(attributes)
@@ -19,4 +20,9 @@ class Review < ApplicationRecord
   scope :order_by_rating, -> {order(:rating)}
 
   #scope :search_by_rating, -> (search_rating){where("rating > ?", search_rating)}
+
+  def self.average_rating #called upon in the restaurants show page
+    average(:rating)
+  end
+
 end
