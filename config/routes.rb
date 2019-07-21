@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
 
   resources :restaurants do #same thing as writing out get 'restaurants/:id' => "restaurants#show" for each route
-    resources :reviews #review belongs to restaurant, you want to nest url
+    resources :reviews#, only [:new, :create, :index] #review belongs to restaurant, you want to nest url
   end
-  resources :users, only: [:show] 
+  resources :users, only: [:show]
   scope '/user' do
     root to: 'sessions#home'
     resources :reviews

@@ -1,11 +1,13 @@
 class Review < ApplicationRecord
-  validates :content, :rating, presence: true
+
   belongs_to :user
   belongs_to :restaurant
 
+  accepts_nested_attributes_for :restaurant
+
   validates :content, presence: true
   validates :rating, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than: 6}
-
+  validates :content, :rating, presence: true
 
   validates :restaurant, uniqueness: { scope: :user, message: "has already been reviewed by you"  }
   validates :restaurant_id, presence: true
@@ -21,7 +23,7 @@ class Review < ApplicationRecord
 
   #scope :search_by_rating, -> (search_rating){where("rating > ?", search_rating)}
 
-  def self.average_rating #called upon in the restaurants show page
+  def self.average_rating #called upon in the restaurants index and show page
     average(:rating)
   end
 

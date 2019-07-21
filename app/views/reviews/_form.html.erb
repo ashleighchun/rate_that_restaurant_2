@@ -1,0 +1,35 @@
+<%= form_for(@review) do |f| %>
+
+
+  <h4><%= f.label :restaurant_id, "Select a Restaurant" %><h4> <!--restaurant_id is the name of the params when passed through the controller-->
+    <%= f.collection_select :restaurant_id, Restaurant.all, :id, :name, prompt: true %><br>
+
+  <% if !params[:restaurant_id] %>
+      <h4>Or add a new restaurant:</h4>
+
+      <%= f.fields_for :restaurant do |r|%>
+          <%= r.label :name %><br>
+          <%= r.text_field :name %><br>
+
+          <%= r.label :location %><br>
+          <%= r.text_field :location %><br>
+
+          <%= r.label :cuisine %><br>
+          <%= r.select(:cuisine, options_for_select(["Breakfast & Brunch", "Cafe", "Comfort Food", "Diner", "Fast Food", "Formal", "Gastropub", "Specialty Food", "Steakhouse", "Tapas/Small Plates",  "Vegan", "Vegetarian"])) %><br>
+
+          <%= r.label :price %><br>
+          <%= r.select(:price, options_for_select(["$", "$$", "$$$", "$$$$"])) %><br>
+      <% end %>
+    <% end %>
+<br><br>
+    <h3>Restaurant Review:</h3>
+
+    <%= f.label :content %><br>
+    <%= f.text_area :content, size: "55x7" %><br>
+
+    <%= f.label :rating, "Rate this restaurant (1-5):"%>
+    <%= f.number_field :rating, min:0, max:5 %>
+<br><br>
+  <h3><%= f.submit %></h3>
+
+<% end %>

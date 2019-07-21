@@ -1,4 +1,4 @@
-<h1><%= @restaurant.name %></h1>
+<h2><%= @restaurant.name %></h2>
 
 <h3><%= @restaurant.location %></h3>
 <h3>Cuisine: <%= @restaurant.cuisine %></h3>
@@ -7,12 +7,13 @@
   <h5>Number of Reviews: <%= @restaurant.reviews.count%></h5>
   <hr>
   <h2>Reviews:</h2>
+  <hr>
   <ul>
   <% @restaurant.reviews.each do |review| %>
-    <li>Reviewer:<%= review.user.name%>
-    <li>Rating:<%= review.rating%> stars. </li> <br>
+    <li><h4><%= review.rating%> Stars </h4></li> <br>
+    <li>Reviewer: <%= review.user.name%>
     <li>Review:<%= review.content%> </li> <br>
-
+<hr>
   <% end %>
   </ul>
   <% else %>

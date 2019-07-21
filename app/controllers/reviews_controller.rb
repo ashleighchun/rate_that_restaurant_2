@@ -27,19 +27,9 @@ before_action :require_login
   end
 
   def index
-    if params[:restaurant_id] && restaurant = Restaurant.find_by_id(params[:restaurant_id])
-      #nested route
-      @reviews = restaurant.reviews
-    else
-      if params[:rating]
-        @reviews = Review.search_by_rating(params[:rating]).order_by_rating.includes(:restaurant, :user)
-        @reviews = Review.order_by_rating if @reviews == []
-      else
-        @reviews = Review.includes(:restaurant, :user).order_by_rating
-      end 
 
-    end
-
+    @user_reviews = Review.all.order_by_rating.select{ |review| review.user_id == current_user.id}
+    binding.pry
 
   end
 
