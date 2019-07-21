@@ -1,18 +1,17 @@
 <!-- Show a single review by logged in user  -->
-<h2>Restaurant Name: <%= @review.restaurant.name%></h2><br>
+<h2>Restaurant Name: <%= @review.restaurant.name%></h2>
 <h5>Restaurant Cuisine: <%= @review.restaurant.cuisine%></h5>
 <h5>Restaurant Location: <%= @review.restaurant.location%></h5>
-<h5>Restaurant Pricing: <%= @review.restaurant.price%></h5>
+
 
 <hr>
-<h4>Your Rating: <%= @review.rating%> <br>
-
-<h4>Your Review: <%= @review.content%></h4>
+<h3>Review Title: <%= @review.title%><h3>
+<h5>Your Rating: <%= @review.rating%> Stars</h5>
+<h5>Your Review: <%= @review.content%></h5>
+<h5>Restaurant Pricing: <%= @review.price%></h5>
 <hr>
-<% if @review.user == current_user %>
+
   <%= link_to "Edit This Review", edit_review_path(@review) %><br>
   <%= link_to "Delete This Review", review_path(@review), method: :delete  %><br>
   <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
   <%=link_to "View All Restaurants", restaurants_path %>
-
-<% end %>

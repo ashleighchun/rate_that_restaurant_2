@@ -28,8 +28,7 @@ before_action :require_login
 
   def index
 
-    @user_reviews = Review.all.order_by_rating.select{ |review| review.user_id == current_user.id}
-    binding.pry
+    @reviews = Review.all.order_by_rating.select{ |review| review.user_id == current_user.id}
 
   end
 
@@ -67,7 +66,7 @@ before_action :require_login
   end
 
   def review_params
-    params.require(:review).permit(:content, :rating, :restaurant_id, restaurant_attributes: [:name, :location, :cuisine, :price])
+    params.require(:review).permit(:title, :content, :rating, :price, :restaurant_id, restaurant_attributes: [:name, :location, :cuisine])
   end
 
   def require_login

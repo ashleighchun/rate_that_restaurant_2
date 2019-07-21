@@ -21,5 +21,13 @@ You can also contribute to the community by submitting a review for restaurants 
 <h3> Your Review Submissions: </h3>
 <hr>
 <ul>
-    
+<% @reviews.each do |review| %>
+  <li><h5>Restaurant Name: <%= link_to review.restaurant.name, review_path(review)%></h5>
+
+  <li>Review Title: <%= review.title%> </li>
+  <li>Review: <%= review.content%> </li>
+  <li>Your Rating: <%= review.rating%> Stars</li>
+  <li>Pricing: <%= review.price%> </li>
+  <hr>
+<% end %>
 </ul>

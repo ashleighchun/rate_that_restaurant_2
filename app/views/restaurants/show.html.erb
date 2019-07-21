@@ -12,7 +12,9 @@
   <% @restaurant.reviews.each do |review| %>
     <li><h4><%= review.rating%> Stars </h4></li> <br>
     <li>Reviewer: <%= review.user.name%>
-    <li>Review:<%= review.content%> </li> <br>
+    <li>Review Title: <%= review.title%>
+    <li>Review:<%= review.content%> </li>
+    <li>Opinion about Price: <%= review.price%> </li> <br>
 <hr>
   <% end %>
   </ul>
