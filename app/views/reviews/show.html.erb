@@ -10,8 +10,9 @@
 <h5>Your Review: <%= @review.content%></h5>
 <h5>Restaurant Pricing: <%= @review.price%></h5>
 <hr>
-
+<% if @review.user == current_user %>
   <%= link_to "Edit This Review", edit_review_path(@review) %><br>
   <%= link_to "Delete This Review", review_path(@review), method: :delete  %><br>
+<% end %>
   <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
-  <%=link_to "View All Restaurants", restaurants_path %>
+  <%= link_to "View All Restaurants", restaurants_path %>

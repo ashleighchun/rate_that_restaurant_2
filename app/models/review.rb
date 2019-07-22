@@ -3,8 +3,6 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
 
-  accepts_nested_attributes_for :restaurant
-
   validates :rating, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than: 6}
   validates :content, :rating, :title, :price, presence: true
 
@@ -23,7 +21,7 @@ class Review < ApplicationRecord
   #scope :search_by_rating, -> (search_rating){where("rating > ?", search_rating)}
 
   def self.average_rating #called upon in the restaurants index and show page
-    average(:rating)
+    average(:rating).round(2)
   end
 
 end

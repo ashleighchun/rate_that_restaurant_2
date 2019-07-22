@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   #join table method that creates new review that connects user to restaurant
 
-before_action :require_login
+  before_action :require_login
 
   def new
     #check if it's nested & it's a proper id
@@ -18,7 +18,6 @@ before_action :require_login
   #post review submission
   def create
     @review = current_user.reviews.build(review_params)
-      binding.pry
     if @review.save
       redirect_to review_path(@review)
     else
@@ -59,6 +58,7 @@ before_action :require_login
   def set_review
     @review = Review.find_by(id: params[:id])
     if !@review
+
       redirect_to reviews_path
     end
   end

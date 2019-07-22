@@ -1,20 +1,27 @@
 <h2><%= @restaurant.name %></h2>
 
-<h3><%= @restaurant.location %></h3>
+<h3>Location: <%= @restaurant.location %></h3>
 <h3>Cuisine: <%= @restaurant.cuisine %></h3>
 <% if @restaurant.reviews.exists? %>
   <h5>Average Rating: <%= @restaurant.reviews.average_rating%></h5> <!-- avg defined in the review model-->
   <h5>Number of Reviews: <%= @restaurant.reviews.count%></h5>
+<hr>
+  <%=link_to "Review This Restaurant", new_restaurant_review_path(@restaurant.id) %> <br>
+
+  <%=link_to "View All Restaurants", restaurants_path %>
   <hr>
   <h2>Reviews:</h2>
   <hr>
   <ul>
   <% @restaurant.reviews.each do |review| %>
-    <li><h4><%= review.rating%> Stars </h4></li> <br>
-    <li>Reviewer: <%= review.user.name%>
-    <li>Review Title: <%= review.title%>
+    <li><h4><%= review.rating%> Stars </h4></li>
+    <li>Review Title: <u><b><%= review.title%></u></b></li>
+    <li>Reviewer: <%= review.user.name%></li>
     <li>Review:<%= review.content%> </li>
     <li>Opinion about Price: <%= review.price%> </li> <br>
+    <% if review.user.id == current_user.id %>
+      <%= link_to "Edit Your Review", edit_review_path(review) %><br>
+      <% end %>
 <hr>
   <% end %>
   </ul>
@@ -32,8 +39,3 @@
 <!-- Reviewer  -->
 <!-- Content  -->
 <!-- Rating -->
-
-
-<%=link_to "Write a New Review", new_restaurant_review_path(@restaurant.id) %> <br>
-
-<%=link_to "View All Restaurants", restaurants_path %>

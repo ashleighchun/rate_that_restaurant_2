@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :restaurants, through: :reviews
 
   validates :name, :email, presence: true
-  validates :name, uniqueness: true
-
+  validates :name, :email, uniqueness: true
+  validates :name, length: {minimum: 3}
 
 
 
