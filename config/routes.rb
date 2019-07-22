@@ -12,13 +12,12 @@ Rails.application.routes.draw do
 
 
   resources :restaurants do #same thing as writing out get 'restaurants/:id' => "restaurants#show" for each route
-    resources :reviews#, only [:new, :create, :index] #review belongs to restaurant, you want to nest url
+    resources :reviews, only: [:new, :create, :index] #review belongs to restaurant, you want to nest url
   end
 
   resources :users, only: [:show]
 
   scope '/user' do  #get rid of nesting under user
-    root to: 'sessions#home'
     resources :reviews
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

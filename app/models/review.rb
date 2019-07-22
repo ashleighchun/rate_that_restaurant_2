@@ -17,11 +17,8 @@ class Review < ApplicationRecord
   end
 
   scope :order_by_rating, -> {order(:rating)}
+  scope :average_rating, -> {average(:rating).round(2)}#called upon in the restaurants index and show page
 
-  #scope :search_by_rating, -> (search_rating){where("rating > ?", search_rating)}
 
-  def self.average_rating #called upon in the restaurants index and show page
-    average(:rating).round(2)
-  end
 
 end
