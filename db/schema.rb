@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 2019_07_21_201503) do
     t.string "name"
     t.string "location"
     t.string "cuisine"
-    t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

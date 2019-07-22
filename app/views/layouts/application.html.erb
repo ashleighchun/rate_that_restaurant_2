@@ -30,7 +30,19 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+    
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
 
+    <style type="text/css">
+      .alert-success{
+        color: green;
+      }
+      .alert-danger{
+        color: red;
+      }
+    </style>
     <!-- content -->
     <div class="container"  role="main">
       <%= yield %>

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   #join table method that creates new review that connects user to restaurant
-
+  before_action :logged_in_user, only: [:edit, :update, :delete]
   before_action :require_login
 
   def new
@@ -53,12 +53,11 @@ class ReviewsController < ApplicationController
     redirect_to reviews_path
   end
 
-  private
+  private #cant be called outside of controller
 
   def set_review
     @review = Review.find_by(id: params[:id])
     if !@review
-
       redirect_to reviews_path
     end
   end
@@ -69,6 +68,13 @@ class ReviewsController < ApplicationController
 
   def require_login
     return head(:forbidden) unless user_signed_in?
+  end
+
+  def logged_in_user
+    @review = Review.find_by(id: params[:id])
+    unless current_user.id == @review.user_id #go to layouts/application.html.erb to see formatting
+      redirect_to restaurants_path, alert: "REDIRECTED: You do not have authorization to alter other user's reviews" 
+    end
   end
 
 end
