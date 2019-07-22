@@ -1,24 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Flatiron school Rails Final Project
 
-Things you may want to cover:
+Rate That Restaurant
 
-* Ruby version
+This is a Ruby on Rails application that allows users to create accounts and add reviews about restaurants they have been to. The Models included are:
 
-* System dependencies
+User - has many reviews and has many restaurants through reviews Review - belongs to a user and belongs to a restaurant through a joins table
 
-* Configuration
+The main page before logging in gives the user the option of Sign In, Sign Up or Sign In With Github. All pages have a home button in the nav bar.
 
-* Database creation
+After signing in, the home page displays all of a user's reviews and gives the user the option of viewing a list of all restaurants and reviews by other users, as well as the ability to create another restaurant review.
 
-* Database initialization
+When the user adds (or edits) a review the inputs are validated with appropriate messaging. The user can select from restaurants reviewed by other users or can add a new one. However, a user cannot create more than one review for a restaurant and a user cannot edit or delete another user's review
 
-* How to run the test suite
+Installation
 
-* Services (job queues, cache servers, search engines, etc.)
+Pull requests are welcome on Github at https://github.com/ashleighchun/rate_that_restaurant.
 
-* Deployment instructions
+Usage
 
-* ...
+To run the application: In the terminal: $ bundle install $ rails s In the browser: localhost:3000/
+
+
+License
+
+This application was developed under the guidance of Flatiron School on learn.co.
