@@ -4,7 +4,11 @@
 
 
 <%= form_for(@review) do |f| %>
-
+<ul>
+  <% @review.errors.full_messages.each do |error_message| %>
+    <li> <%= error_message %>
+  <%end%>
+</ul>
 <h3>Restaurant Review:</h3>
 
   <%= f.label :title, "Review Title:"%>

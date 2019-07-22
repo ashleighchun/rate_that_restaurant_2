@@ -27,9 +27,7 @@ before_action :require_login
   end
 
   def index
-
     @reviews = Review.all.order_by_rating.select{ |review| review.user_id == current_user.id}
-
   end
 
   def show

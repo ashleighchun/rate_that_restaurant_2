@@ -1,7 +1,11 @@
 <h1>Create a New Restaurant Review</h1>
 
 <%= form_for(@review) do |f| %>
-
+<ul>
+  <% @review.errors.full_messages.each do |error_message| %>
+    <li> <%= error_message %> 
+  <%end%>
+</ul>
 
   <h4><%= f.label :restaurant_id, "Select a Restaurant" %><h4> <!--restaurant_id is the name of the params when passed through the controller-->
     <%= f.collection_select :restaurant_id, Restaurant.all, :id, :name, prompt: true %><br>
