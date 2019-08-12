@@ -1,0 +1,10 @@
+<div class="nav_links">
+    <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
+    <% if !user_signed_in? %>
+        <a class="navbar-brand" href="<%= login_path %>"/>Log In</a>
+        <a class="navbar-brand" href="<%= signup_path %>"/>Sign Up</a>
+    <% else %>
+        <a class="navbar-brand" href="<%= user_path(current_user) %>"/>Welcome, <%= current_user.name %></a>
+        <a class="navbar-brand" data-method="delete" href="<%= destroy_user_session_path %>"/>Log Out</a>
+    <% end %>
+</div>

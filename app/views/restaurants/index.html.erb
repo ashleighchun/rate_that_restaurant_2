@@ -1,0 +1,24 @@
+<h1>All Restaurants</h1>
+Click the Restaurant Name to see what people have to say about each restaurant!
+<hr>
+<ul>
+  <% @restaurants.each do |restaurant|%>
+    <li>
+      <h4>Restaurant Name: <%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+        <ul>
+          <li>
+            Location: <%= restaurant.location %>
+          </li>
+          <li>
+            Cuisine: <%= restaurant.cuisine %>
+          </li>
+          <li>
+            Average Rating: <%= restaurant.reviews.average_rating %> Stars
+          </li>
+        </ul>
+    </li>
+    <hr>
+  <% end %>
+</ul>
+
+<%= link_to "Create a new Restaurant Review!", new_review_path %><br>
