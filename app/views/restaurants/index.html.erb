@@ -1,6 +1,7 @@
 <h1>All Restaurants</h1>
 Click the Restaurant Name to see what people have to say about each restaurant!
 <hr>
+<div id='restaurants-data'>
 <ul>
   <% @restaurants.each do |restaurant|%>
     <li>
@@ -20,5 +21,18 @@ Click the Restaurant Name to see what people have to say about each restaurant!
     <hr>
   <% end %>
 </ul>
-
+</div>
 <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
+
+
+
+
+
+<!-- All restaurants-->
+
+<!--loop through restaurant details using ajax -->
+<!-- each restuarant has a <button> hook to 'See Restaurant's Reviews' -->
+
+<!-- -->
+<!-- -->
+<!--add the form to create a new restaurant review right in this page instead of a link -->
