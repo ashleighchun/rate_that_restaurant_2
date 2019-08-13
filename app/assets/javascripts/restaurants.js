@@ -77,7 +77,26 @@ function displayRestaurant(e) {
     })
 }
 
-
+function createRestaurant() {
+  const restaurant = {
+    name: document.getElementById('name').value,
+    location: document.getElementById('location').value,
+    cuisine: document.getElementById('cuisine').value
+  }
+  fetch(BASE_URL +'/todos', {
+    method: 'POST',
+    body: JSON.stringify({ restaurant }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then(resp => resp.json())
+  .then(restaurant => {
+    document.querySelector("#main ul").innerHTML += `<li>${todo.title} </li>`
+    let restaurantFormDiv = document.getElementById('restaurant-form');
+    restaurantFormDiv.innerHTML = '';
+  })
+}
 
 function attachClickToRestaurantLinks() {
   let restaurants = document.querySelectorAll('li a');
