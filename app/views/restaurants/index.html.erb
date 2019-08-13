@@ -1,32 +1,14 @@
 
   <h1>Restaurants</h1>
-  <a href="#" onclick="displayCreateForm(); return false;"> Submit Restaurant Review</a>
-  <a href="#" onclick="getRestaurants(); return false;"> All Restaurants</a>
-  <hr>
+  <a href="#" onclick="getRestaurants()"> View All Restaurants</a> | <a href="#" onclick="displayCreateForm()"> Create A Restaurant Review</a>
+
+<hr>
   <div id="review-form"></div>
   <div id="main">
-    <ul>
-      <% @restaurants.each do |restaurant|%>
-      <li>
-        <h4>Restaurant Name: <%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-          <ul>
-            <li>
-              Location: <%= restaurant.location %>
-            </li>
-            <li>
-              Cuisine: <%= restaurant.cuisine %>
-            </li>
-            <li>
-              Average Rating: <%= restaurant.reviews.average_rating %> Stars
-            </li>
-          </ul>
-        </li>
-      <hr>
-      <% end %>
-    </ul>
+
   </div>
 
-  
+
 
 
 
