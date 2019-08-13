@@ -38,7 +38,7 @@ function getRestaurants() {
       `).join('')
     main.innerHTML += '</ul>'
 
-    //attachClickToRestaurantLinks();   ---come back to this
+    attachClickToRestaurantLinks();
   })
 }
 
@@ -46,3 +46,18 @@ function clearForm(){
   let restaurantFormDiv= document.getElementById('review-form');
   restaurantFormDiv.innerHTML = '';
 }
+
+
+
+
+
+function attachClickToRestaurantLinks() {
+  let restaurants = document.querySelectorAll('li a');
+  for (let i = 0; i < restaurants.length; i++) {
+    restaurants[i].addEventListener('click', displayRestaurant)
+  }
+}
+
+window.addEventListener('load', function(){
+  attachClickToRestaurantLinks();
+})
