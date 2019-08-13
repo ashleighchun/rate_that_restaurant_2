@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all.order_by_name
     respond_to do |format|
-      format.html
+      format.html       #if no json renders the index.html view
       format.json { render json: @restaurants }
     end
   end
