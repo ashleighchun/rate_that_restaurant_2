@@ -1,17 +1,32 @@
 const BASE_URL = 'http://localhost:3000'
 
 function displayCreateForm(){
-  let reviewFormDiv = document.getElementById('review-form');
+  let restaurantFormDiv = document.getElementById('restaurant-form');
   let html = `
-  <form onsubmit="createReview(); return false;">
-    <label>Title: </label>
-    <input type="text" id="title"><br/>
-    <label> Content: </label>
-    <input type="text" id="content"><br/>
-    <input type="submit" value="Submit Your Review">
+  <form onsubmit="createRestaurant(); return false;">
+    <label>Restaurant Name: </label>
+    <input type="text" id="name"><br/>
+    <label> Location: </label>
+    <input type="text" id="location"><br/>
+    <label> Cuisine: </label>
+    <select>
+      <option value="breakfastBrunch">Breakfast & Brunch</option>
+      <option value="cafe">Cafe</option>
+      <option value="comfortFood">Comfort Food</option>
+      <option value="diner">Diner</option>
+      <option value="fastFood">Fast Food</option>
+      <option value="formal">Formal</option>
+      <option value="gastropub">Gastropub</option>
+      <option value="specialtyFood">Specialty Food</option>
+      <option value="steakhouse">Steakhouse</option>
+      <option value="tapas">Tapa/Small Platess</option>
+      <option value="vegan" selected>Vegan</option>
+      <option value="vegetarian" selected>Vegetarian</option>
+    </select><br/>
+    <input type="submit" value="Create Restaurant">
   </form>
   `
-  reviewFormDiv.innerHTML = html;
+  restaurantFormDiv.innerHTML = html;
 }
 
 
@@ -43,11 +58,24 @@ function getRestaurants() {
 }
 
 function clearForm(){
-  let restaurantFormDiv= document.getElementById('review-form');
+  let restaurantFormDiv= document.getElementById('restaurant-form');
   restaurantFormDiv.innerHTML = '';
 }
 
+function displayRestaurant(e) {
+  e.preventDefault();
+  clearForm();
+  let id = this.dataset.id;
+  let main = document.getElementById('main');
+  main.innerHTML = '';
 
+  fetch(BASE_URL + '/restaurants/' + id + '.json')
+    .then(resp => resp.json())
+    .then(restaurant => {
+      main.innerHTML += ``;
+      main.innerHTML += ``
+    })
+}
 
 
 
