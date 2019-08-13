@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all.order_by_name
-    #render json: @restaurants
+    render json: @restaurants
   end
 
   def show
