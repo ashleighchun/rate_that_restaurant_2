@@ -1,33 +1,29 @@
-function getRestaurants() {
-  let main = document.getElementById('main')
-  main.innerHTML = '<ul>'
-  fetch("/restaurants")
-  .then(response => response.json())
-  then(data => {
-    main.innerHTML += data.map(restaurant => {
-      const r = new Restaurant(restuarant)
-      return r.render()
-    }).join('')
-    main.innerHTML += '<ul>'
-  })
-}
+$(document).ready(function () {
 
-
-class Restaurant {
-  constructor(restaurant) {
-    this.id = restaurant.id
-    this.name = restaurant.name
-    this.location = restaurant.location
-    this.cuisine = restaurant.cuisine
-  }
-
-  render() {
-    return `
-    <li><a href="/restaurants/${this.id}">${this.name}</a></li>
-    `
-  }
-}
-
-window.addEventListener('load', (e) => {
-  getRestaurants()
 })
+
+//create an object
+class Review{
+  constructor(id, title, content, rating, price, user_id, restaurant_id){
+    this.id = id
+    this.title = title
+    this.content = content
+    this.rating = rating
+    this.price = price
+    this.user_id = user_id
+    this.restaurant_id = restaurant_id
+  }
+
+  //prototypes act like instance methods for a new object
+  //this prototype will take the json object and return html
+  //to be appended to DOM
+  Review.prototype.reviewHTML = function(){
+    let newHTML = " "
+    newHtml += `<li>`
+    newHtml += `<b>Review Title:</b> ${this.title} <br>`
+    newHtml += `<b>Content:</b>${this.content}<br>`
+    newHtml += `<b>Rating:</b>${this.rating}<br>`
+    newHtml += `</li>`
+    return newHtml
+  };
+}
