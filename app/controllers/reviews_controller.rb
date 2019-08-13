@@ -31,6 +31,7 @@ class ReviewsController < ApplicationController
 
   def show
   set_review
+  render json: @review, status: 200
   end
 
   def edit
@@ -73,7 +74,7 @@ class ReviewsController < ApplicationController
   def logged_in_user
     @review = Review.find_by(id: params[:id])
     unless current_user.id == @review.user_id #go to layouts/application.html.erb to see formatting
-      redirect_to restaurants_path, alert: "REDIRECTED: You do not have authorization to alter other user's reviews" 
+      redirect_to restaurants_path, alert: "REDIRECTED: You do not have authorization to alter other user's reviews"
     end
   end
 

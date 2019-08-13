@@ -6,10 +6,19 @@
 </head>
 
 <body>
-  <h1>All Restaurants</h1>
-  Click the Restaurant Name to see what people have to say about each restaurant!
+  <h1>Restaurants</h1>
+  <a href="#" onclick="displayCreateForm(); return false;"> Submit Restaurant Review</a>
+  <a href="#" onclick="getTodos(); return false;"> All Restaurants</a>
   <hr>
-  <div class="restaurants-container">
+  <div id="review-form"></div>
+  <div id="main"></div>
+
+
+
+
+<!--old code, will be removed -->
+
+  <div>
     <ul>
       <% @restaurants.each do |restaurant|%>
       <li>
@@ -29,17 +38,7 @@
     <hr>
     <% end %>
   </ul>
-    <div id="new-restaurant-review-container">
-      <form id="new-review-form">
-        <input type="text" />
-        <input type="submit" />
-      </form>
-    </div>
 
-
-    <div id="reviews-container">
-
-    </div>
   </div>
 
   <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
@@ -50,11 +49,11 @@
 </html>
 
 
-<!-- All restaurants-->
-
+<!-- Restaurants-->
+<!--create a new restaurant review right button | See Restaurants button-->
+<!-- line break -->
 <!--loop through restaurant details using ajax -->
 <!-- each restuarant has a <button> hook to 'See Restaurant's Reviews' -->
 
 <!-- -->
 <!-- -->
-<!--add the form to create a new restaurant review right in this page instead of a link -->
