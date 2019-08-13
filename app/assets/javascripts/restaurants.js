@@ -1,29 +1,20 @@
-$(document).ready(function () {
+const BASE_URL = 'http://localhost:3000'
 
-})
+function getRestaurants() {
+  clearForm();
+  let main = document.getElementById('main');
+  main.innerHTML = '<ul>';
+  fetch(BASE_URL +'/restaurants.json')
+  .then(resp => resp.json())
+  .then(restaurants => {
+    main.innerHTML += restaurants.map(restaurant => `<li><a href="#" data-id="$(restaurant.id)">$(restaurant.name)</a></li>`).join('')
+    main.innerHTML += '</ul>'
 
-//create an object
-class Review{
-  constructor(id, title, content, rating, price, user_id, restaurant_id){
-    this.id = id
-    this.title = title
-    this.content = content
-    this.rating = rating
-    this.price = price
-    this.user_id = user_id
-    this.restaurant_id = restaurant_id
-  }
+    //attachClickToRestaurantLinks();   ---come back to this
+  })
+}
 
-  //prototypes act like instance methods for a new object
-  //this prototype will take the json object and return html
-  //to be appended to DOM
-  Review.prototype.reviewHTML = function(){
-    let newHTML = " "
-    newHtml += `<li>`
-    newHtml += `<b>Review Title:</b> ${this.title} <br>`
-    newHtml += `<b>Content:</b>${this.content}<br>`
-    newHtml += `<b>Rating:</b>${this.rating}<br>`
-    newHtml += `</li>`
-    return newHtml
-  };
+function clearForm(){
+  let restaurantFormDiv= document.getElementById('review-form');
+  restaurantFormDiv.innerHTML = '';
 }
