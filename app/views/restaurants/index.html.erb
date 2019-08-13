@@ -11,14 +11,7 @@
   <a href="#" onclick="getTodos(); return false;"> All Restaurants</a>
   <hr>
   <div id="review-form"></div>
-  <div id="main"></div>
-
-
-
-
-<!--old code, will be removed -->
-
-  <div>
+  <div id="main">
     <ul>
       <% @restaurants.each do |restaurant|%>
       <li>
@@ -35,10 +28,9 @@
             </li>
           </ul>
         </li>
-    <hr>
-    <% end %>
-  </ul>
-
+      <hr>
+      <% end %>
+    </ul>
   </div>
 
   <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
