@@ -1,31 +1,53 @@
-<h1>All Restaurants</h1>
-Click the Restaurant Name to see what people have to say about each restaurant!
-<hr>
-<div id='restaurants-data'>
-<ul>
-  <% @restaurants.each do |restaurant|%>
-    <li>
-      <h4>Restaurant Name: <%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
-        <ul>
-          <li>
-            Location: <%= restaurant.location %>
-          </li>
-          <li>
-            Cuisine: <%= restaurant.cuisine %>
-          </li>
-          <li>
-            Average Rating: <%= restaurant.reviews.average_rating %> Stars
-          </li>
-        </ul>
-    </li>
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+<title>Restaurant Reviews</title>
+</head>
+
+<body>
+  <h1>All Restaurants</h1>
+  Click the Restaurant Name to see what people have to say about each restaurant!
+  <hr>
+  <div class="restaurants-container">
+    <ul>
+      <% @restaurants.each do |restaurant|%>
+      <li>
+        <h4>Restaurant Name: <%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+          <ul>
+            <li>
+              Location: <%= restaurant.location %>
+            </li>
+            <li>
+              Cuisine: <%= restaurant.cuisine %>
+            </li>
+            <li>
+              Average Rating: <%= restaurant.reviews.average_rating %> Stars
+            </li>
+          </ul>
+        </li>
     <hr>
-  <% end %>
-</ul>
-</div>
-<%= link_to "Create a new Restaurant Review!", new_review_path %><br>
+    <% end %>
+  </ul>
+    <div id="new-restaurant-review-container">
+      <form id="new-review-form">
+        <input type="text" />
+        <input type="submit" />
+      </form>
+    </div>
 
 
+    <div id="reviews-container">
 
+    </div>
+  </div>
+
+  <%= link_to "Create a new Restaurant Review!", new_review_path %><br>
+
+
+</body>
+
+</html>
 
 
 <!-- All restaurants-->
