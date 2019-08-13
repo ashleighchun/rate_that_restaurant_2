@@ -9,8 +9,7 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
-//= require jquery3
+// dont forget to add requirements for restaurants and reviews
+//= require jquery
 //= require rails-ujs
-//= require activestorage
 //= require_tree .
