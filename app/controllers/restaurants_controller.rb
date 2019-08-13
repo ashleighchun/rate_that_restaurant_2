@@ -13,4 +13,19 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find_by(id: params[:id])
 
   end
+
+  def create
+    @restaurant = Restaurant.new(restaurant_params)
+    if @restaurant.save
+      render json: @restaurant, status: 201
+    else
+      render json: { errors: @restaurant.errors.full_messages }, status: :bad_request
+    end
+  end
+
+  private
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :location, :cuisine)
+  end
 end
