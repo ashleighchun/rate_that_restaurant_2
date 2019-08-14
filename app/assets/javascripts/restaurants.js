@@ -31,7 +31,7 @@ function displayCreateForm(){
 
 
 function getRestaurants() {
-  clearForm();
+  //clearForm();
   let main = document.getElementById('main');
   main.innerHTML = '<ul>';
   fetch(BASE_URL + '/restaurants.json')     //routing to the index
@@ -45,9 +45,6 @@ function getRestaurants() {
           </li>
           <li>
             Cuisine: ${restaurant.cuisine}
-          </li>
-          <li>
-            Average Rating: ${restaurant.reviews.average_rating} Stars
           </li>
         </ul>
       `).join('')
@@ -87,7 +84,8 @@ function createRestaurant() {
     location: document.getElementById('location').value,
     cuisine: document.getElementById('id_of_select').value
   }
-  fetch(BASE_URL + '/restaurants', {                 //post request
+  debugger
+  fetch(BASE_URL + '/restaurants', {
     method: 'POST',
     body: JSON.stringify({ restaurant }),
     headers: {
@@ -96,16 +94,13 @@ function createRestaurant() {
     }
   }).then(resp => resp.json())
   .then(restaurant => {
-    document.querySelector("#main ul").innerHTML += `
+    document.querySelector("#main").innerHTML += `
     <h4>Restaurant Name: <a href="#" data-id="${restaurant.id}">${restaurant.name}</a></h4>
     <li>
       Location: ${restaurant.location}
     </li>
     <li>
       Cuisine: ${restaurant.cuisine}
-    </li>
-    <li>
-      Average Rating: ${restaurant.reviews.average_rating} Stars
     </li>
     `
     let restaurantFormDiv = document.getElementById('restaurant-form');

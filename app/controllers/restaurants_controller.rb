@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  
+
   def index
     @restaurants = Restaurant.all.order_by_name
     respond_to do |format|
@@ -15,11 +15,12 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-    if @restaurant.save
-      render json: @restaurant, status: 201
+    binding.pry
+    restaurant = Restaurant.new(restaurant_params)
+    if restaurant.save
+      render json: restaurant, status: 201
     else
-      render json: { errors: @restaurant.errors.full_messages }, status: :bad_request
+      render json: { errors: restaurant.errors.full_messages }, status: :bad_request
     end
   end
 
