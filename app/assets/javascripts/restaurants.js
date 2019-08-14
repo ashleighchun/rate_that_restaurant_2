@@ -9,19 +9,19 @@ function displayCreateForm(){
     <label> Location: </label>
     <input type="text" id="location"><br/>
     <label> Cuisine: </label>
-    <select>
-      <option value="breakfastBrunch">Breakfast & Brunch</option>
-      <option value="cafe">Cafe</option>
-      <option value="comfortFood">Comfort Food</option>
-      <option value="diner">Diner</option>
-      <option value="fastFood">Fast Food</option>
-      <option value="formal">Formal</option>
-      <option value="gastropub">Gastropub</option>
-      <option value="specialtyFood">Specialty Food</option>
-      <option value="steakhouse">Steakhouse</option>
-      <option value="tapas">Tapa/Small Platess</option>
-      <option value="vegan" selected>Vegan</option>
-      <option value="vegetarian" selected>Vegetarian</option>
+    <select id="id_of_select">
+      <option value="Breakfast and Brunch">Breakfast and Brunch</option>
+      <option value="Cafe">Cafe</option>
+      <option value="Comfort Food">Comfort Food</option>
+      <option value="Diner">Diner</option>
+      <option value="Fast Food">Fast Food</option>
+      <option value="Formal">Formal</option>
+      <option value="Gastropub">Gastropub</option>
+      <option value="Specialty Food">Specialty Food</option>
+      <option value="Steakhouse">Steakhouse</option>
+      <option value="Tapa/Small Platess">Tapa/Small Platess</option>
+      <option value="Vegan">Vegan</option>
+      <option value="Vegetarian">Vegetarian</option>
     </select><br/>
     <input type="submit" value="Create Restaurant">
   </form>
@@ -58,7 +58,7 @@ function getRestaurants() {
 }
 
 function clearForm(){
-  let restaurantFormDiv= document.getElementById('restaurant-form');
+  let restaurantFormDiv = document.getElementById('restaurant-form');
   restaurantFormDiv.innerHTML = '';
 }
 
@@ -72,18 +72,22 @@ function displayRestaurant(e) {
   fetch(BASE_URL + '/restaurants/' + id + '.json')
     .then(resp => resp.json())
     .then(restaurant => {
-      main.innerHTML += ``;
-      main.innerHTML += ``
+      main.innerHTML += `<h3>${restaurant.name}</h3>`;
+      main.innerHTML += `<p>${restaurant.location}</p>`;
+      main.innerHTML += `<p>${restaurant.cuisine}</p>`
+      main.innerHTML += `<p>${restaurant.reviews.average_rating}</p>`
     })
 }
 
 function createRestaurant() {
+  let selector = document.getElementById('id_of_select');
+  let value = selector[selector.selectedIndex].value;
   const restaurant = {
     name: document.getElementById('name').value,
     location: document.getElementById('location').value,
-    cuisine: document.getElementById('cuisine').value
+    cuisine: document.getElementById('id_of_select').value
   }
-  fetch(BASE_URL +'/todos', {
+  fetch(BASE_URL + '/restaurants', {                 //post request
     method: 'POST',
     body: JSON.stringify({ restaurant }),
     headers: {
@@ -92,7 +96,18 @@ function createRestaurant() {
     }
   }).then(resp => resp.json())
   .then(restaurant => {
-    document.querySelector("#main ul").innerHTML += `<li>${todo.title} </li>`
+    document.querySelector("#main ul").innerHTML += `
+    <h4>Restaurant Name: <a href="#" data-id="${restaurant.id}">${restaurant.name}</a></h4>
+    <li>
+      Location: ${restaurant.location}
+    </li>
+    <li>
+      Cuisine: ${restaurant.cuisine}
+    </li>
+    <li>
+      Average Rating: ${restaurant.reviews.average_rating} Stars
+    </li>
+    `
     let restaurantFormDiv = document.getElementById('restaurant-form');
     restaurantFormDiv.innerHTML = '';
   })

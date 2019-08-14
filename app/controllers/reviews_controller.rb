@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
 
   def show
   set_review
-  render json: @review, status: 200
+  
   end
 
   def edit
