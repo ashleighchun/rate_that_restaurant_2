@@ -11,11 +11,10 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
-
+    render json: @restaurant
   end
 
   def create
-    binding.pry
     restaurant = Restaurant.new(restaurant_params)
     if restaurant.save
       render json: restaurant, status: 201
