@@ -60,7 +60,6 @@ function clearForm(){
 
 function displayRestaurant(e) {
   e.preventDefault();
-  debugger
   clearForm();
   let id = this.dataset.id;
   let main = document.getElementById('main');
@@ -69,12 +68,41 @@ function displayRestaurant(e) {
   fetch(BASE_URL + '/restaurants/' + id + '.json')
     .then(resp => resp.json())
     .then(restaurant => {
-      main.innerHTML += `<h3>Name: ${restaurant.name}</h3>`;
-      main.innerHTML += `<p>Location: ${restaurant.location}</p>`;
-      main.innerHTML += `<p>Cuisine: ${restaurant.cuisine}</p>`
-      main.innerHTML += `<p>Average Rating: ${restaurant.reviews.average_rating}</p>`
-    }) // this is where the has many relationship to reviews will be placed
-} //button to 'See Reviews' 
+      main.innerHTML += `
+        <h3>Name: ${restaurant.name}</h3>
+        <p>Location: ${restaurant.location}</p>
+        <p>Cuisine: ${restaurant.cuisine}</p>
+
+        <button id="btn" data-id="${restaurant.id}">See Reviews</button>
+      `
+
+    if (restaurant.reviews.length === 0) {
+      document.getElementById('btn').style.display = 'none'
+    }else {
+      document.getElementById('btn').addEventListener('click', getReviews)
+    }
+  }) // this is where the has many relationship to reviews will be placed
+
+
+} //button to 'See Reviews'
+
+function getReviews(e) {
+  e.preventDefault();
+  let id = e.toElement.dataset.id
+  let main = document.getElementById('main');
+  main.innerHTML = '';
+
+  fetch(BASE_URL + '/restaurants/' + id + '.json')
+  .then(resp => resp.json())
+  .then(restaurant => {
+    main.innerHTML += restaurant.reviews.map(review => `
+      <h3> Title: ${review.title}</h3>
+      <p>Rating: ${review.rating}</p>
+      <p>Price: ${review.price}</p>
+      <p>Review: ${review.content}</p<
+    `).join('')
+  })
+}
 
 function createRestaurant() {
   let selector = document.getElementById('id_of_select'); //these two variables are defined to grab the select option value
@@ -120,6 +148,7 @@ class Restaurant_obj {
           </ul>
         `
     }
+
 }
 
 function attachClickToRestaurantLinks() {
@@ -128,6 +157,8 @@ function attachClickToRestaurantLinks() {
     restaurants[i].addEventListener('click', displayRestaurant)
   }
 }
+
+
 
 window.addEventListener('load', function(){
   attachClickToRestaurantLinks();
