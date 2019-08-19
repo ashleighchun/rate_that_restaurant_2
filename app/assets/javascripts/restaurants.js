@@ -122,7 +122,8 @@ function createRestaurant() {
   .then(restaurant => {
     console.log('restaurant',restaurant)
     if(restaurant.errors){
-      return document.querySelector("#main").innerHTML += restaurant.errors.join(' ')
+       document.querySelector("#main").innerHTML += restaurant.errors.join(' ');
+       return
     }
     rest = new Restaurant_obj(restaurant)
     document.querySelector("#main").innerHTML += rest.renderRestaurant()
