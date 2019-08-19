@@ -81,7 +81,7 @@ function displayRestaurant(e) {
     }else {
       document.getElementById('btn').addEventListener('click', getReviews)
     }
-  }) // this is where the has many relationship to reviews will be placed
+  })
 
 
 } //button to 'See Reviews'
@@ -91,13 +91,12 @@ function getReviews(e) {
   let id = e.toElement.dataset.id
   let main = document.getElementById('main');
   main.innerHTML = '';
-
   fetch(BASE_URL + '/restaurants/' + id + '.json')
   .then(resp => resp.json())
   .then(restaurant => {
     main.innerHTML += restaurant.reviews.map(review => `
-      <h3> Title: ${review.title}</h3>
-      <p>Rating: ${review.rating}</p>
+      <h4> Review Title: ${review.title}</h4>
+      <p>Customer Rating: ${review.rating}</p>
       <p>Price: ${review.price}</p>
       <p>Review: ${review.content}</p<
     `).join('')
@@ -121,11 +120,15 @@ function createRestaurant() {
     }
   }).then(resp => resp.json())
   .then(restaurant => {
+    console.log('restaurant',restaurant)
+    if(restaurant.errors){
+      return document.querySelector("#main").innerHTML += restaurant.errors.join(' ')
+    }
     rest = new Restaurant_obj(restaurant)
     document.querySelector("#main").innerHTML += rest.renderRestaurant()
     let restaurantFormDiv = document.getElementById('restaurant-form');
     restaurantFormDiv.innerHTML = '';
-  })
+  });
 }
 
 class Restaurant_obj {
