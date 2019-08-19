@@ -69,9 +69,9 @@ function displayRestaurant(e) {
     .then(resp => resp.json())
     .then(restaurant => {
       main.innerHTML += `
-        <h3>Name: ${restaurant.name}</h3>
-        <p>Location: ${restaurant.location}</p>
-        <p>Cuisine: ${restaurant.cuisine}</p>
+        <h3><b> Name:</b>  ${restaurant.name}</h3>
+        <p><b>Location:</b>  ${restaurant.location}</p>
+        <p><b>Cuisine: </b> ${restaurant.cuisine}</p>
 
         <button id="btn" data-id="${restaurant.id}">See Reviews</button>
       `
@@ -95,12 +95,14 @@ function getReviews(e) {
   .then(resp => resp.json())
   .then(restaurant => {
     main.innerHTML += restaurant.reviews.map(review => `
-      <h4> Review Title: ${review.title}</h4>
-      <p>Customer Rating: ${review.rating}</p>
-      <p>Price: ${review.price}</p>
-      <p>Review: ${review.content}</p<
+      <h4><b> Review Title:</b> ${review.title}</h4>
+      <p><b>Customer Rating:</b>  ${review.rating}</p>
+      <p><b>Price:</b>  ${review.price}</p>
+      <p><b>Review: </b> ${review.content}</p>  <hr>
     `).join('')
+
   })
+
 }
 
 function createRestaurant() {
@@ -122,7 +124,7 @@ function createRestaurant() {
   .then(restaurant => {
     console.log('restaurant',restaurant)
     if(restaurant.errors){
-       document.querySelector("#main").innerHTML += restaurant.errors.join(' ');
+       document.querySelector("#main").innerHTML = restaurant.errors.join(' ');
        return
     }
     rest = new Restaurant_obj(restaurant)

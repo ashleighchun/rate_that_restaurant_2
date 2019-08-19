@@ -14,10 +14,10 @@ You can also contribute to the community by submitting a review for restaurants 
 <% @reviews.each do |review| %>
   <li><h5>Restaurant Name: <%= link_to review.restaurant.name, review_path(review)%></h5>
 
-  <li>Review Title: <%= review.title%> </li>
-  <li>Review: <%= review.content%> </li>
-  <li>Your Rating: <%= review.rating%> Stars</li>
-  <li>Pricing: <%= review.price%> </li>
+  <li><b>Review Title:</b> <%= review.title%> </li>
+  <li><b>Review:</b>  <%= review.content%> </li>
+  <li><b>Your Rating: </b> <%= review.rating%> Stars</li>
+  <li><b>Pricing: </b> <%= review.price%> </li>
   <hr>
 <% end %>
 </ul>
